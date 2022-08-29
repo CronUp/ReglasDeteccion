@@ -13,10 +13,10 @@ rule Ransomware_ServicioPublico_Chile {
       $s3 = "vssadmin delete shadows /All /quiet"
       $s4 = "reg add \"hklm\\SYSTEM\\ControlSet001\\Control\\CommonGlobUserSettings\\Control Panel\\International\""
       $s5 = "/v sShortDate /t REG_SZ /d \"ALL YOUR FILES HAS BEEN ENCRYPTED\""
-      $s6 = "Z:\\_ARC\\_WorkSolution\\cryptopp860\\sse_simd.cpp"
-      $s7 = "Z:\\_ARC\\Encrypter 2.0.pdb"
+      $s6 = "\\_ARC\\_WorkSolution\\cryptopp860\\sse_simd.cpp"
+      $s7 = "\\_ARC\\Encrypter 2.0.pdb"
 
    condition:
-      uint16(0) == 0x5a4d and filesize < 1000KB and all of them
+      uint16(0) == 0x5a4d and filesize < 1000KB and 6 of ($s*)
 
 }
