@@ -1,7 +1,7 @@
 rule Ransomware_ServicioPublico_Chile {
 
    meta:
-      description = "Regla Yara simple para detectar el Ransomware que afecto a Servicio Público en Chile"
+      description = "Regla Yara para detectar ARCrypt Ransomware (también conocido como Chile Locker)"
       author = "German Fernandez | CronUp - Cyber Threat Intelligence"
       reference = "https://twitter.com/SERNAC/status/1562872175068975105"
       date = "2022-08-26"
