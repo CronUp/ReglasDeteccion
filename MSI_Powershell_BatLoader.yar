@@ -5,7 +5,7 @@ rule MSI_Powershell_BatLoader
         author = "German Fernandez | CronUp - Cyber Threat Intelligence"
         reference = "https://twitter.com/1ZRR4H/status/1575364101148114944"
         date = "2022-10-13"
-        hash = "caa80c5adef2e1eb564bff505521cd570a82f8921b3088c90c0775438e4d36cb"
+        hash = "08cd62a04c3ed5245f022424e9843d6e420ce6e2431c0fecd7c90a63b2a81c45"
 
     strings:
         $magic = {D0 CF 11 E0 A1 B1 1A E1} // .MSI
