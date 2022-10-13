@@ -1,7 +1,7 @@
 rule MSI_Powershell_BatLoader
 {
     meta:
-        description = "Regla Yara para detectar los archivos MSI con Powershell (BatLoader)"
+        description = "Regla Yara para detectar archivos MSI sospechosos que invocan a Powershell"
         author = "German Fernandez | CronUp - Cyber Threat Intelligence"
         reference = "https://twitter.com/1ZRR4H/status/1575364101148114944"
         date = "2022-10-13"
