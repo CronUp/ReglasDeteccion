@@ -1,7 +1,7 @@
 rule MAL_Warsaw_EDR_killer
 {
     meta:
-        description = "Detecta binarios que habilitan SeDebugPrivilege, cargan driver dump_diskdumps, manipulan Warsaw_PM y terminan procesos EDR"
+        description = "Detecta binarios que habilitan SeDebugPrivilege, cargan driver dump_diskdumps, manipulan Warsaw_PM y terminan procesos EDR/AV"
         author = "German Fernandez | CronUp - Cyber Threat Intelligence"
         date = "2026-01-01"
         severity = "high"
