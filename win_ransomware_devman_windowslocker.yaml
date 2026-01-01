@@ -20,23 +20,18 @@ logsource:
   category: file_event
 
 detection:
-
   encrypted_files:
     TargetFilename|re: '\.devman[0-9]{2}$'
-
   ransom_note:
     TargetFilename|contains:
       - 'DECRYPT_ME.txt'
-
   ransom_wallpaper:
     TargetFilename|contains:
       - 'devman_wallpaper.png'
-
   condition: >
     encrypted_files
     and ransom_note
     and ransom_wallpaper
-
 falsepositives:
   - Pruebas controladas de simulación de ransomware en laboratorios
   - Ninguno esperado en entornos productivos
