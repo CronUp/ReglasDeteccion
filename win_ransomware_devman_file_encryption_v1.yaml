@@ -1,0 +1,28 @@
+title: DEVMAN Ransomware - Encryption and Ransom Note Activity
+id: d3f1c1b2-devman-ransomware
+status: experimental
+description: Detecta comportamiento típico de ransomware DEVMAN (Windows Locker)
+author: SOC DFIR
+date: 2026-01-01
+tags:
+  - attack.impact
+  - attack.t1486
+  - ransomware
+logsource:
+  category: file_event
+  product: windows
+
+detection:
+  extension:
+    TargetFilename|re: '\.devman[0-9]{2}$'
+  ransom_note:
+    TargetFilename|contains:
+      - 'DECRYPT_ME.txt'
+  wallpaper:
+    TargetFilename|contains:
+      - 'devman_wallpaper.png'
+
+  condition: extension and ransom_note
+falsepositives:
+  - None expected
+level: critical
