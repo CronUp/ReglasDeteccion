@@ -18,6 +18,7 @@ tags:
 logsource:
   product: windows
   category: process_creation
+
 detection:
   sedebug_cmd:
     CommandLine|contains:
