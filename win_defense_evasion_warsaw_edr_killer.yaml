@@ -3,7 +3,7 @@ id: 8c7c5f4a-warsaw-edr-killer-001
 status: experimental
 description: >
   Detecta comportamiento asociado a herramientas que habilitan SeDebugPrivilege,
-  cargan drivers maliciosos (dump_diskdumps.sys), interactúan con Warsaw_PM
+  cargan drivers dump_diskdumps.sys, interactúan con Warsaw_PM
   y finalizan procesos de seguridad (EDR / AV).
 author: German Fernandez | CronUp - Cyber Threat Intelligence
 date: 2026-01-01
