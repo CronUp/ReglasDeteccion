@@ -1,0 +1,58 @@
+title: Warsaw EDR Killer - SeDebugPrivilege and Malicious Driver Load
+id: 8c7c5f4a-warsaw-edr-killer-001
+status: experimental
+description: >
+  Detecta comportamiento asociado a herramientas que habilitan SeDebugPrivilege,
+  cargan drivers maliciosos (dump_diskdumps.sys), interactúan con Warsaw_PM
+  y finalizan procesos de seguridad (EDR / AV).
+author: German Fernandez | CronUp - Cyber Threat Intelligence
+date: 2026-01-01
+references:
+  - DEVMAN Ransomware en Sector Salud de Chile
+tags:
+  - attack.defense_evasion
+  - attack.t1562
+  - attack.t1068
+  - attack.t1547
+  - ransomware
+logsource:
+  product: windows
+  category: process_creation
+
+detection:
+
+  # --- Habilitación de privilegios elevados ---
+  sedebug_cmd:
+    CommandLine|contains:
+      - "SeDebugPrivilege"
+      - "You Got SeDebugPriv"
+
+  # --- Carga de driver sospechoso ---
+  driver_load:
+    CommandLine|contains:
+      - "dump_diskdumps.sys"
+      - "Driver Loaded as dump_diskdumps"
+
+  # --- Interacción con Warsaw (bypass / control) ---
+  warsaw_access:
+    CommandLine|contains:
+      - "\\\\.\\Warsaw_PM"
+
+  # --- Terminación de procesos (TKO / kill) ---
+  process_kill:
+    CommandLine|contains:
+      - "Finished TKO"
+      - "taskkill"
+      - "TerminateProcess"
+
+  condition: >
+    (
+      (sedebug_cmd and driver_load)
+      and warsaw_access
+      and process_kill
+    )
+
+falsepositives:
+  - Herramientas administrativas legítimas con drivers firmados (muy poco probable)
+  - Software de debugging kernel autorizado
+level: critical
