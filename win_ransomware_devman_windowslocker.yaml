@@ -1,0 +1,43 @@
+title: DEVMAN Ransomware - Windows Locker Behavior
+id: 4f1c2d8a-devman-windowslocker-001
+status: experimental
+description: >
+  Detecta comportamiento asociado al ransomware DEVMAN (Windows Locker),
+  incluyendo cifrado de archivos con extensión .devmanXX, creación de nota
+  de rescate, despliegue de wallpaper malicioso y mensajes típicos de
+  finalización de cifrado.
+author: German Fernandez | CronUp - Cyber Threat Intelligence
+date: 2026-01-01
+references:
+  - DEVMAN Ransomware en Sector Salud de Chile
+tags:
+  - attack.impact
+  - attack.t1486
+  - ransomware
+  - devman
+logsource:
+  product: windows
+  category: file_event
+
+detection:
+
+  encrypted_files:
+    TargetFilename|re: '\.devman[0-9]{2}$'
+
+  ransom_note:
+    TargetFilename|contains:
+      - 'DECRYPT_ME.txt'
+
+  ransom_wallpaper:
+    TargetFilename|contains:
+      - 'devman_wallpaper.png'
+
+  condition: >
+    encrypted_files
+    and ransom_note
+    and ransom_wallpaper
+
+falsepositives:
+  - Pruebas controladas de simulación de ransomware en laboratorios
+  - Ninguno esperado en entornos productivos
+level: critical
