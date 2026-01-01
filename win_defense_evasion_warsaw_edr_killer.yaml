@@ -18,40 +18,29 @@ tags:
 logsource:
   product: windows
   category: process_creation
-
 detection:
-
-  # --- Habilitación de privilegios elevados ---
   sedebug_cmd:
     CommandLine|contains:
       - "SeDebugPrivilege"
       - "You Got SeDebugPriv"
-
-  # --- Carga de driver sospechoso ---
   driver_load:
     CommandLine|contains:
       - "dump_diskdumps.sys"
       - "Driver Loaded as dump_diskdumps"
-
-  # --- Interacción con Warsaw (bypass / control) ---
   warsaw_access:
     CommandLine|contains:
       - "\\\\.\\Warsaw_PM"
-
-  # --- Terminación de procesos (TKO / kill) ---
   process_kill:
     CommandLine|contains:
       - "Finished TKO"
       - "taskkill"
       - "TerminateProcess"
-
   condition: >
     (
       (sedebug_cmd and driver_load)
       and warsaw_access
       and process_kill
     )
-
 falsepositives:
   - Herramientas administrativas legítimas con drivers firmados (muy poco probable)
   - Software de debugging kernel autorizado
