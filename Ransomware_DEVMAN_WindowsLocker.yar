@@ -6,7 +6,7 @@ rule Ransomware_DEVMAN_WindowsLocker
         date = "2026-01-01"
         malware_family = "DEVMAN"
         severity = "critical"
-        reference = "DEVMAN Ransomware en Sector Salud de Chile.
+        reference = "DEVMAN Ransomware en Sector Salud de Chile."
 
     strings:
         $ext = /\.devman[0-9]{2}/ ascii
